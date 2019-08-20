@@ -1,6 +1,11 @@
 package Controlador;
 
 import Vista.*;
+
+import java.awt.event.ActionEvent;
+
+import javax.swing.JOptionPane;
+
 import Modelo.*;
 
 public class ControlBanco 
@@ -19,12 +24,19 @@ public class ControlBanco
 	public Cliente buscarCliente(String pCedula)
 	{
 		Cliente c = null;
-		for(int i=0; i<banco.getClientes().size(); i++)
+		try
 		{
-			if(c.getCedula() == pCedula)
+			for(int i=0; i<banco.getClientes().size(); i++)
 			{
-				c=banco.getClientes().get(i);
+				if(c.getCedula().equals(pCedula))
+				{
+					c=banco.getClientes().get(i);
+				}
 			}
+		}
+		catch(Exception e)
+		{
+			JOptionPane.showInputDialog("El usuario no ha sido encontrado");
 		}
 		return c;
 	}
@@ -32,26 +44,40 @@ public class ControlBanco
 	public Antecedente buscarAntecedente(int pCodigo)
 	{
 		Antecedente a = null;
-		for(int i=0; i<cliente.getAntecedentes().size(); i++)
+		try
 		{
-			if(a.getCodigo() == pCodigo)
+			for(int i=0; i<cliente.getAntecedentes().size(); i++)
 			{
-				a=cliente.getAntecedentes().get(i);
+				if(a.getCodigo() == pCodigo)
+				{
+					a=cliente.getAntecedentes().get(i);
+				}
 			}
+		}
+		catch(Exception e)
+		{
+			JOptionPane.showInputDialog("El antecedente no ha sido encontrado");
 		}
 		return a;
 	}
-	
+
 	public void agregarCliente(String pNombre, String pCedula, int pEdad, char pGenero)
 	{
 		Cliente c = buscarCliente(pCedula);
-		if(c==null)
+		try
 		{
-			c = new Cliente(pNombre, pCedula, pEdad, pGenero);
-			banco.getClientes().add(c);
+			if(c==null)
+			{
+				c = new Cliente(pNombre, pCedula, pEdad, pGenero);
+				banco.getClientes().add(c);
+			}
+		}
+		catch(Exception e)
+		{
+			JOptionPane.showInputDialog("El cliente ya existe en el sistema");
 		}
 	}
-	
+
 	public void agregarAntecedente(int pCodigo, String pInformacion)
 	{
 		Antecedente a = buscarAntecedente(pCodigo);
@@ -80,12 +106,22 @@ public class ControlBanco
 		}
 	}
 	
-	public void modificarCliente(String pCedula)
+	public void modificarCliente(String pCedula, String pNombre, int pEdad, char pGenero)
 	{
 		Cliente c = buscarCliente(pCedula);
 		if(c!=null)
 		{
-			
+			cliente.setNombre(pNombre);
+			cliente.setEdad(pEdad);
+			cliente.setGenero(pGenero);
 		}
 	}
+	
+	public void actionPerformed(ActionEvent e)
+	{
+		String evento = e.getActionCommand();
+		
+	}
+	
+	
 }

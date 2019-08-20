@@ -5,6 +5,14 @@ Nombre= <>
 Cedula= <>
 Edad= <>
 Genero= <>
-Antecedentes= [<>]
+Antecedentes= 
+[<
+	Titulo = <>
+	Fecha = <>
+>, 
+<
+	Titulo =<>
+	Fecha = <>
+>...]
 Descripción= [<>]
 
