@@ -1,0 +1,10 @@
+Numero de personas:<>
+
+Persona No. 
+Nombre= <>
+Cedula= <>
+Edad= <>
+Genero= <>
+Antecedentes= [<>]
+Descripción= [<>]
+
