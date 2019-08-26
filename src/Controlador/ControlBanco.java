@@ -3,6 +3,13 @@ package Controlador;
 import Vista.*;
 
 import java.awt.event.ActionEvent;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 
@@ -12,13 +19,28 @@ public class ControlBanco
 {
 	VentanaPrincipal vp;
 	Banco banco;
-	Cliente cliente;
 	Antecedente antecedente;
+	private File archivo = new File("data/datos.txt");
 
 	public ControlBanco()
 	{
 		vp= new VentanaPrincipal();
 		banco= new Banco();
+		if(archivo.exists())
+		{
+			System.out.println("El archivo existe");
+		}
+		else
+		{
+			try
+			{
+				archivo.createNewFile();
+			}
+			catch(IOException e)
+			{
+				e.printStackTrace();
+			}
+		}
 	}
 
 	public Cliente buscarCliente(String pCedula)
@@ -26,13 +48,17 @@ public class ControlBanco
 		Cliente c = null;
 		try
 		{
-			for(int i=0; i<banco.getClientes().size(); i++)
+			if(banco.getClientes().isEmpty())
 			{
-				if(c.getCedula().equals(pCedula))
+				for(int i=0; i<banco.getClientes().size(); i++)
 				{
-					c=banco.getClientes().get(i);
+					if(c.getCedula().equals(pCedula))
+					{
+						c=banco.getClientes().get(i);
+					}
 				}
 			}
+
 		}
 		catch(Exception e)
 		{
@@ -40,17 +66,20 @@ public class ControlBanco
 		}
 		return c;
 	}
-	
-	public Antecedente buscarAntecedente(int pCodigo)
+
+	public Antecedente buscarAntecedente(int pCodigo, String pCedula)
 	{
 		Antecedente a = null;
 		try
 		{
-			for(int i=0; i<cliente.getAntecedentes().size(); i++)
+			if(buscarCliente(pCedula).getAntecedentes().isEmpty())
 			{
-				if(a.getCodigo() == pCodigo)
+				for(int i=0; i<buscarCliente(pCedula).getAntecedentes().size(); i++)
 				{
-					a=cliente.getAntecedentes().get(i);
+					if(a.getCodigo() == pCodigo)
+					{
+						a=buscarCliente(pCedula).getAntecedentes().get(i);
+					}
 				}
 			}
 		}
@@ -70,6 +99,7 @@ public class ControlBanco
 			{
 				c = new Cliente(pNombre, pCedula, pEdad, pGenero);
 				banco.getClientes().add(c);
+				escribirArchivoCliente();
 			}
 		}
 		catch(Exception e)
@@ -78,13 +108,15 @@ public class ControlBanco
 		}
 	}
 
-	public void agregarAntecedente(int pCodigo, String pInformacion)
+	public void agregarAntecedente(int pCodigo, String pDescripcion, String pTitulo, String pCedula)
 	{
-		Antecedente a = buscarAntecedente(pCodigo);
+		Antecedente a = buscarAntecedente(pCodigo, pCedula);
 		if(a==null)
 		{
-			a = new Antecedente(pCodigo, pInformacion);
-			cliente.getAntecedentes().add(a);
+			a = new Antecedente(pCodigo, pDescripcion, pTitulo);
+			
+			buscarCliente(pCedula).getAntecedentes().add(a);
+			escribirArchivoCliente();
 		}
 	}
 	
@@ -97,12 +129,12 @@ public class ControlBanco
 		}
 	}
 	
-	public void eliminarAntecedente(int pCodigo)
+	public void eliminarAntecedente(int pCodigo, String pCedula)
 	{
-		Antecedente a = buscarAntecedente(pCodigo);
+		Antecedente a = buscarAntecedente(pCodigo, pCedula);
 		if(a!=null)
 		{
-			cliente.getAntecedentes().remove(a);
+			buscarCliente(pCedula).getAntecedentes().remove(a);
 		}
 	}
 	
@@ -111,17 +143,50 @@ public class ControlBanco
 		Cliente c = buscarCliente(pCedula);
 		if(c!=null)
 		{
-			cliente.setNombre(pNombre);
-			cliente.setEdad(pEdad);
-			cliente.setGenero(pGenero);
+			c.setNombre(pNombre);
+			c.setEdad(pEdad);
+			c.setGenero(pGenero);
 		}
 	}
 	
-	public void actionPerformed(ActionEvent e)
+	public void escribirArchivoCliente()
 	{
-		String evento = e.getActionCommand();
-		
+		FileWriter escritura;
+		PrintWriter pw;
+		try
+		{
+			escritura = new FileWriter(archivo);
+			pw = new PrintWriter(escritura);
+			pw.println("-----------------------------------------------------------------------------");
+			pw.println(banco.toString());
+			pw.println("-----------------------------------------------------------------------------");
+			pw.close();
+			escritura.close();
+		}
+		catch(IOException e)
+		{
+			JOptionPane.showMessageDialog(null, "No se pudo agregar el cliente al archivo");
+		}
 	}
 	
-	
+	public void lecturaArchivo()
+	{
+		String cadena=null;
+		FileReader lectura;
+		BufferedReader lec;
+		try
+		{
+			lectura = new FileReader(archivo);
+			lec = new BufferedReader(lectura);
+			while((cadena=lec.readLine()) != null)
+			{
+				String [] valores = cadena.split(",");
+			}
+		}
+		catch(IOException e)
+		{
+			
+		}
+		
+	}
 }

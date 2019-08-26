@@ -58,4 +58,10 @@ public class Cliente {
 	public void setAntecedentes(ArrayList<Antecedente> antecedentes) {
 		this.antecedentes = antecedentes;
 	}
+	
+	public String toString()
+	{
+		String a = "Nombre" +nombre +"Cedula" + cedula +"Edad" +edad +"Genero" +genero + "Antecedentes:"+ antecedentes.toString();
+		return a;
+	}
 }

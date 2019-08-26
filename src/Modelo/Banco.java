@@ -18,4 +18,10 @@ public class Banco {
 	public void setClientes(ArrayList<Cliente> clientes) {
 		this.clientes = clientes;
 	}
+
+	@Override
+	public String toString()
+	{
+		return "clientes" + clientes.toString();
+	}
 }
