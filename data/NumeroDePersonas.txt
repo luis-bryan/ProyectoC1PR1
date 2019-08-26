@@ -1,0 +1,18 @@
+Numero de personas:<>
+
+Persona No. 
+Nombre= <>
+Cedula= <>
+Edad= <>
+Genero= <>
+Antecedentes= 
+[<
+	Titulo = <>
+	Fecha = <>
+>, 
+<
+	Titulo =<>
+	Fecha = <>
+>...]
+Descripción= [<>]
+
