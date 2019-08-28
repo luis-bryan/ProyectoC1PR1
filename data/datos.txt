@@ -1,0 +1,30 @@
+Numero de personas:4
+Persona No. 0
+Nombre=<nombrePersona>
+Cedula=<cedula>
+Edad=12
+Genero=<
+Antecedentes=[Codigo:1234;Titulo:eijiw;Descripcion:cualquiercosamaslarga, Codigo:1234;Titulo:eijiw1;Descripcion:cualquiercosamaslarga1, Codigo:1234;Titulo:eijiw1;Descripcion:cualquiercosamaslarga1]
+----------
+Persona No. 1
+Nombre=<nombrePersona2>
+Cedula=<cedula2>
+Edad=122
+Genero=2
+Antecedentes=[Codigo:1234;Titulo:eijiw;Descripcion:cualquiercosamaslarga, Codigo:1234;Titulo:eijiw1;Descripcion:cualquiercosamaslarga1, Codigo:1234;Titulo:eijiw1;Descripcion:cualquiercosamaslarga1]
+----------
+Persona No. 2
+Nombre=x
+Cedula=y
+Edad=12
+Genero=z
+Antecedentes=[Codigo:1234;Titulo:eijiw1;Descripcion:cualquiercosamaslarga1]
+----------
+Persona No. 3
+Nombre=x
+Cedula=y
+Edad=12
+Genero=z
+Antecedentes=[]
+----------
+

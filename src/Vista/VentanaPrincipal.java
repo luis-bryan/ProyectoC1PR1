@@ -8,6 +8,8 @@ import java.awt.Toolkit;
 
 import javax.swing.JFrame;
 
+import Controlador.ControlBanco;
+
 public class VentanaPrincipal extends JFrame {
 	PanelTitulo pt;
 	PanelClientes pc;
@@ -41,5 +43,4 @@ public class VentanaPrincipal extends JFrame {
 
 	
 	}
-
 }

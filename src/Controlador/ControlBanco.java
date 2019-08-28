@@ -41,6 +41,9 @@ public class ControlBanco
 				e.printStackTrace();
 			}
 		}
+		lecturaArchivo();
+		System.out.println(banco);
+		
 	}
 
 	public Cliente buscarCliente(String pCedula)
@@ -67,7 +70,7 @@ public class ControlBanco
 		return c;
 	}
 
-	public Antecedente buscarAntecedente(int pCodigo, String pCedula)
+	public Antecedente buscarAntecedente(String pCodigo, String pCedula)
 	{
 		Antecedente a = null;
 		try
@@ -108,13 +111,12 @@ public class ControlBanco
 		}
 	}
 
-	public void agregarAntecedente(int pCodigo, String pDescripcion, String pTitulo, String pCedula)
+	public void agregarAntecedente(String pCodigo, String pDescripcion, String pTitulo, String pCedula)
 	{
 		Antecedente a = buscarAntecedente(pCodigo, pCedula);
 		if(a==null)
 		{
 			a = new Antecedente(pCodigo, pDescripcion, pTitulo);
-			
 			buscarCliente(pCedula).getAntecedentes().add(a);
 			escribirArchivoCliente();
 		}
@@ -129,7 +131,7 @@ public class ControlBanco
 		}
 	}
 	
-	public void eliminarAntecedente(int pCodigo, String pCedula)
+	public void eliminarAntecedente(String pCodigo, String pCedula)
 	{
 		Antecedente a = buscarAntecedente(pCodigo, pCedula);
 		if(a!=null)
@@ -157,9 +159,7 @@ public class ControlBanco
 		{
 			escritura = new FileWriter(archivo);
 			pw = new PrintWriter(escritura);
-			pw.println("-----------------------------------------------------------------------------");
 			pw.println(banco.toString());
-			pw.println("-----------------------------------------------------------------------------");
 			pw.close();
 			escritura.close();
 		}
@@ -178,15 +178,55 @@ public class ControlBanco
 		{
 			lectura = new FileReader(archivo);
 			lec = new BufferedReader(lectura);
-			while((cadena=lec.readLine()) != null)
-			{
-				String [] valores = cadena.split(",");
+			String nombre = "";
+			String cedula = "";
+			int edad = 0;
+			char genero = ' ';
+			String codigo = "";
+			String titulo = "";
+			String descripcion = "";
+			ArrayList<Antecedente> listaNuevosAntecedentes = new ArrayList<Antecedente>();
+			while((cadena=lec.readLine())!=null) {
+				String[] separado= cadena.split("=");
+				
+				if(separado[0].equals("Nombre")) {
+					nombre=separado[1];
+				} else if(separado[0].equals("Cedula")) {
+					cedula=separado[1];
+				} else if(separado[0].equals("Edad")) {
+					edad=Integer.parseInt(separado[1]);
+				} else if(separado[0].equals("Genero")) {
+					genero=separado[1].charAt(0);
+				} else if(separado[0].equals("Antecedentes")) {
+					String[] antecedentes = separado[1].split(",");
+					for (int i = 0; i < antecedentes.length; i++) {
+						String[] antecedente = antecedentes[i].split(";");
+						for(int j=0; j<antecedente.length; j++) {
+							String[] keyValue = antecedente[j].split(":");
+							if(keyValue[0].equals("Codigo")|| keyValue[0].equals("[Codigo")) {
+								codigo=keyValue[1];
+							}else if(keyValue[0].equals("Titulo"))
+							{
+								titulo=keyValue[1];
+							}else if(keyValue[0].equals("Descripcion"))
+							{
+								descripcion = keyValue[1].replace("]","");
+							}
+						}
+						Antecedente nuevo = new Antecedente(codigo, titulo, descripcion);
+						listaNuevosAntecedentes.add(nuevo);
+						}
+				} else if(cadena.equals("----------")) {
+					Cliente nuevoCliente = new Cliente(nombre, cedula, edad, genero);
+					nuevoCliente.setAntecedentes(listaNuevosAntecedentes);
+					banco.getClientes().add(nuevoCliente);
+					listaNuevosAntecedentes = new ArrayList<Antecedente>();
+				}
 			}
 		}
 		catch(IOException e)
 		{
-			
+			JOptionPane.showMessageDialog(null, "Hubo un error en la lectura del archivo");
 		}
-		
 	}
 }

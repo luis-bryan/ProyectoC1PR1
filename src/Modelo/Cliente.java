@@ -61,7 +61,7 @@ public class Cliente {
 	
 	public String toString()
 	{
-		String a = "Nombre" +nombre +"Cedula" + cedula +"Edad" +edad +"Genero" +genero + "Antecedentes:"+ antecedentes.toString();
+		String a = "Nombre=" +nombre+ "\nCedula=" + cedula +"\nEdad=" +edad +"\nGenero=" +genero + "\nAntecedentes="+ antecedentes.toString();
 		return a;
 	}
 }

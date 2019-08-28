@@ -2,22 +2,22 @@ package Modelo;
 
 public class Antecedente {
 
-	private int codigo;
+	private String codigo;
 	private String descripcion;
 	private String titulo;
 	
-	public Antecedente(int pCodigo, String pTitulo, String pDescripcion)
+	public Antecedente(String pCodigo, String pTitulo, String pDescripcion)
 	{
 		codigo = pCodigo;
 		descripcion = pDescripcion;
 		titulo = pTitulo;
 	}
 
-	public int getCodigo() {
+	public String getCodigo() {
 		return codigo;
 	}
 
-	public void setCodigo(int codigo) {
+	public void setCodigo(String codigo) {
 		this.codigo = codigo;
 	}
 
@@ -31,7 +31,7 @@ public class Antecedente {
 
 	@Override
 	public String toString() {
-		return "codigo"+codigo+"titulo"+titulo+"descripcion"+descripcion;
+		return "Codigo:"+codigo+";Titulo:"+titulo+";Descripcion:"+descripcion;
 	}
 	
 	
