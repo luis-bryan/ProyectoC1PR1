@@ -21,7 +21,20 @@ public class ControlBanco
 	Banco banco;
 	Antecedente antecedente;
 	private File archivo = new File("data/datos.txt");
-
+/**
+ * Constructor de la clase ControlBanco
+ * 
+ * <b>Pre:</b>
+ * <ul>
+ * 	<li>Existe una carpeta Data</li>
+ * </ul>
+ * <b>Post:</b>
+ * <ul>
+ * 	<li>Existe un archivo de texto datos.txt dentro de la carpeta data</li>
+ *  <li>Se creo el objeto banco</li>
+ *  <li>Se realizo la lectura del archivo</li>
+ * </ul>
+ */
 	public ControlBanco()
 	{
 		vp= new VentanaPrincipal();
@@ -45,7 +58,20 @@ public class ControlBanco
 		System.out.println(banco);
 		
 	}
-
+/**
+ * Busca un cliente
+ * <b>Pre:</b>
+ * <ul>
+ * 	<li>El arrayList de clientes se encuentra inicializado</li>
+ * </ul>
+ * <b>Post:</b>
+ * <ul>
+ * 	<li>Se encontro un objeto de la clase cliente</li>
+ * </ul>
+ * @param pCedula Se usa para buscar el cliente, dado que dos personas no pueden tener la misma cedula
+ * 		  pCedula != "" y pCedula != null
+ * @return un objeto de la clase cliente si se encontro, null si el cliente no existe
+ */
 	public Cliente buscarCliente(String pCedula)
 	{
 		Cliente c = null;
