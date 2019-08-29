@@ -67,9 +67,7 @@ public class ControlAgregar implements ActionListener {
 						pc.getModel().addElement(auxnombre);
 
 						va.setVisible(false);
-
 						va.getEdad_().setText("");
-
 						va.getNombre_().setText("");
 						va.getCedula_().setText("");
 						va.getGenero_().setText("");

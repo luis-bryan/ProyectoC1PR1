@@ -20,6 +20,7 @@ public class VentanaAgregar extends JFrame {
 	JTextField edad_;
 	JTextField genero_;
 	JButton agregar;
+	JButton volver;
 
 	public VentanaAgregar() {
 		setTitle("AGREGAR ESTUDIANTE");
@@ -47,6 +48,9 @@ public class VentanaAgregar extends JFrame {
 		add(genero_);
 		agregar = new JButton("AGREGAR");
 		add(agregar);
+		volver = new JButton("VOLVER");
+		add(volver);
+		volver.setActionCommand("VOLVER");
 		agregar.setActionCommand("AGREGAR");
 
 	}
