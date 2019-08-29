@@ -10,6 +10,8 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 
+import Controlador.ControlBanco;
+
 public class VentanaPrincipal extends JFrame {
 	PanelTitulo pt;
 	PanelClientes pc;
@@ -44,5 +46,4 @@ public class VentanaPrincipal extends JFrame {
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 
 	}
-
 }
