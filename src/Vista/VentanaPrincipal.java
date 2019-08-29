@@ -1,10 +1,6 @@
 package Vista;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.FlowLayout;
-import java.awt.GridLayout;
-import java.awt.Toolkit;
 
 import javax.swing.JFrame;
 
@@ -18,7 +14,7 @@ public class VentanaPrincipal extends JFrame {
 	
 	
 	public VentanaPrincipal() {
-		setTitle("BANCO TOBEPE " + "¡ DONDE TU DINERO ESTA SEGURO !");
+		setTitle("BANCO TOBEPE " + "? DONDE TU DINERO ESTA SEGURO !");
 		setResizable(false);
 		setLayout(null);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -40,7 +36,5 @@ public class VentanaPrincipal extends JFrame {
 		setVisible(true);
 		
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
-
-	
 	}
 }
