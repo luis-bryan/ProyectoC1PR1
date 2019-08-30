@@ -7,17 +7,24 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 
 public class PanelInformaciónAnte extends JPanel {
-	JTextArea infoant;
+  JTextArea infoant;
 
-	public PanelInformaciónAnte() {
-		setBorder(new CompoundBorder(new EmptyBorder(5, 5, 2, 2), new TitledBorder("INFORMACION ANTECEDENTES")));
+  public PanelInformaciónAnte() {
+    setBorder(new CompoundBorder(new EmptyBorder(5, 5, 2, 2), new TitledBorder("INFORMACION ANTECEDENTES")));
 
-		infoant = new JTextArea();
+    infoant = new JTextArea();
 
-		infoant.setRows(40);
-		infoant.setColumns(30);
-		infoant.setEditable(true);
-		add(infoant);
-	
-	}
+    infoant.setRows(40);
+    infoant.setColumns(30);
+    infoant.setEditable(true);
+    add(infoant);
+  }
+
+  public JTextArea getInfoant() {
+    return infoant;
+  }
+
+  public void setInfoant(JTextArea infoant) {
+    this.infoant = infoant;
+  }
 }

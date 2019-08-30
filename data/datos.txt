@@ -1,2 +1,16 @@
-Numero de personas:0
+Numero de personas:2
+Persona No. 0
+Nombre=Felipe
+Cedula=123
+Edad=15
+Genero=M
+Antecedentes=[Codigo:2;Titulo:Retiro;Descripcion:Retiro 400000 en Exito]
+----------
+Persona No. 1
+Nombre=Daniela
+Cedula=1234
+Edad=18
+Genero=F
+Antecedentes=[Codigo:1;Titulo:Retiro;Descripcion:Retiro 200000 en Exito]
+----------
 

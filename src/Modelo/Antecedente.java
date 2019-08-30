@@ -62,4 +62,7 @@ public class Antecedente {
 	public String toString() {
 		return "Codigo:"+codigo+";Titulo:"+titulo+";Descripcion:"+descripcion;
 	}
+	public String toStringMostrar() {
+		return "\nCodigo:"+codigo+"\nTitulo:"+titulo+"\nDescripcion:"+descripcion;
+	}
 }
