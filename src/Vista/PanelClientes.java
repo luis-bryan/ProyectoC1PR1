@@ -58,8 +58,8 @@ public class PanelClientes extends JPanel implements ActionListener, ListSelecti
 		pBotones.add(modificar).setFont(new Font("Comic Sans MS", Font.BOLD, 15));
 		eliminar = new JButton("ELIMINAR CLIENTE");
 		pBotones.add(eliminar).setFont(new Font("Comic Sans MS", Font.BOLD, 15));
+		add(pBotones).setBackground(Color.white);;
 		add(pBotones).setBackground(Color.white);
-		;
 		actionListener(this);
 
 	}
@@ -189,6 +189,4 @@ public class PanelClientes extends JPanel implements ActionListener, ListSelecti
 		// TODO Auto-generated method stub
 		
 	}
-
-
 }
