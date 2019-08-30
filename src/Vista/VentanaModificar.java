@@ -21,7 +21,7 @@ public class VentanaModificar extends JFrame {
 		setTitle("MODIFICAR ESTUDIANTE");
 		setSize(700, 620);
 		setResizable(false);
-		setLayout(new GridLayout(4, 1));
+		setLayout(new GridLayout(4, 2));
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		setLocationRelativeTo(null);
 

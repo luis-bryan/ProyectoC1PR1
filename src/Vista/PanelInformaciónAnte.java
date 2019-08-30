@@ -12,7 +12,8 @@ public class PanelInformaciónAnte extends JPanel {
 	public PanelInformaciónAnte() {
 		setBorder(new CompoundBorder(new EmptyBorder(5, 5, 2, 2), new TitledBorder("INFORMACION ANTECEDENTES")));
 
-		infoant = new JTextArea("RESUMEN GENERAL:");
+		infoant = new JTextArea();
+
 		infoant.setRows(40);
 		infoant.setColumns(30);
 		infoant.setEditable(true);

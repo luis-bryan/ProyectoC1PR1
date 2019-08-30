@@ -37,7 +37,6 @@ public class ControlBanco
 	 */
 	public ControlBanco()
 	{
-		vp= new VentanaPrincipal();
 		banco= new Banco();
 		if(archivo.exists())
 		{
@@ -55,7 +54,6 @@ public class ControlBanco
 			}
 		}
 		lecturaArchivo();
-		System.out.println(banco);
 
 	}
 	/**
@@ -77,11 +75,11 @@ public class ControlBanco
 		Cliente c = null;
 		try
 		{
-			if(banco.getClientes().isEmpty())
+			if(!banco.getClientes().isEmpty())
 			{
 				for(int i=0; i<banco.getClientes().size(); i++)
 				{
-					if(c.getCedula().equals(pCedula))
+					if(banco.getClientes().get(i).getCedula().equals(pCedula))
 					{
 						c=banco.getClientes().get(i);
 					}
@@ -120,11 +118,11 @@ public class ControlBanco
 		Antecedente a = null;
 		try
 		{
-			if(buscarCliente(pCedula).getAntecedentes().isEmpty())
+			if(!buscarCliente(pCedula).getAntecedentes().isEmpty())
 			{
 				for(int i=0; i<buscarCliente(pCedula).getAntecedentes().size(); i++)
 				{
-					if(a.getCodigo() == pCodigo)
+					if(a.getCodigo().equals(pCodigo))
 					{
 						a=buscarCliente(pCedula).getAntecedentes().get(i);
 					}
@@ -233,6 +231,7 @@ public class ControlBanco
 		if(c!=null)
 		{
 			banco.getClientes().remove(c);
+			escribirArchivoCliente();
 		}
 	}
 
@@ -259,6 +258,7 @@ public class ControlBanco
 		if(a!=null)
 		{
 			buscarCliente(pCedula).getAntecedentes().remove(a);
+			escribirArchivoCliente();
 		}
 	}
 
@@ -283,11 +283,13 @@ public class ControlBanco
 	public void modificarCliente(String pCedula, String pNombre, int pEdad, char pGenero)
 	{
 		Cliente c = buscarCliente(pCedula);
-		if(c!=null)
-		{
+		System.out.println(pCedula);
+		System.out.println(c);
+		if(c!=null){
 			c.setNombre(pNombre);
 			c.setEdad(pEdad);
 			c.setGenero(pGenero);
+			escribirArchivoCliente();
 		}
 	}
 
@@ -402,10 +404,44 @@ public class ControlBanco
 					listaNuevosAntecedentes = new ArrayList<Antecedente>();
 				}
 			}
+			lectura.close();
+			lec.close();
 		}
 		catch(IOException e)
 		{
 			JOptionPane.showMessageDialog(null, "Hubo un error en la lectura del archivo");
 		}
 	}
+
+  public VentanaPrincipal getVp() {
+    return vp;
+  }
+
+  public void setVp(VentanaPrincipal vp) {
+    this.vp = vp;
+  }
+
+  public Banco getBanco() {
+    return banco;
+  }
+
+  public void setBanco(Banco banco) {
+    this.banco = banco;
+  }
+
+  public Antecedente getAntecedente() {
+    return antecedente;
+  }
+
+  public void setAntecedente(Antecedente antecedente) {
+    this.antecedente = antecedente;
+  }
+
+  public File getArchivo() {
+    return archivo;
+  }
+
+  public void setArchivo(File archivo) {
+    this.archivo = archivo;
+  }
 }

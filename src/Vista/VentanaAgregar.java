@@ -1,33 +1,39 @@
 package Vista;
 
+import Controlador.ControlAgregar;
+import Controlador.ControlBanco;
+import Modelo.Cliente;
+
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JTextField;
+import javax.swing.*;
 
 public class VentanaAgregar extends JFrame {
 	JLabel nombre;
 	JLabel cedula;
 	JLabel edad;
 	JLabel genero;
-
+	ControlAgregar ca;
 	JTextField nombre_;
 	JTextField cedula_;
 	JTextField edad_;
 	JTextField genero_;
 	JButton agregar;
 
-	public VentanaAgregar() {
+	public VentanaAgregar(){
+		ca = new ControlAgregar();
+
 		setTitle("AGREGAR ESTUDIANTE");
 		setSize(700, 620);
 		setResizable(false);
 		setLayout(new GridLayout(5, 1));
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		setLocationRelativeTo(null);
+		setVisible(false);
 
 		nombre = new JLabel("NOMBRE:");
 		add(nombre);
@@ -48,7 +54,6 @@ public class VentanaAgregar extends JFrame {
 		agregar = new JButton("AGREGAR");
 		add(agregar);
 		agregar.setActionCommand("AGREGAR");
-
 	}
 
 	public JButton getAgregar() {

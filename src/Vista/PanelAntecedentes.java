@@ -26,7 +26,6 @@ public class PanelAntecedentes extends JPanel {
 		DefaultListModel<String> model = new DefaultListModel<String>();
 		JScrollPane desplazamientolista = new JScrollPane(listaAntecedentes);
 		desplazamientolista.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-		model.addElement("RETIRO");
 		listaAntecedentes.setModel(model);
 		add(desplazamientolista);
 		panelbotones = new JPanel();
@@ -37,8 +36,29 @@ public class PanelAntecedentes extends JPanel {
 		eliminar = new JButton("ELIMINAR ANTECEDENTE");
 		panelbotones.add(eliminar).setFont(new Font("Comic Sans MS", Font.BOLD, 15));
 		add(panelbotones).setBackground(Color.white);
-		;
-
 	}
 
+	public JPanel getPanelbotones() {
+		return panelbotones;
+	}
+
+	public void setPanelbotones(JPanel panelbotones) {
+		this.panelbotones = panelbotones;
+	}
+
+	public JButton getAgregar() {
+		return agregar;
+	}
+
+	public void setAgregar(JButton agregar) {
+		this.agregar = agregar;
+	}
+
+	public JButton getEliminar() {
+		return eliminar;
+	}
+
+	public void setEliminar(JButton eliminar) {
+		this.eliminar = eliminar;
+	}
 }

@@ -23,7 +23,7 @@ import javax.swing.event.ListSelectionListener;
 import Modelo.Banco;
 import Modelo.Cliente;
 
-public class PanelClientes extends JPanel implements ActionListener, ListSelectionListener {
+public class PanelClientes extends JPanel {
 	JButton agregar;
 	JButton eliminar;
 	JButton modificar;
@@ -31,7 +31,6 @@ public class PanelClientes extends JPanel implements ActionListener, ListSelecti
 	JList listaclientes;
 	VentanaAgregar va;
 	VentanaModificar vm;
-	Banco banco;
 	DefaultListModel<String> model;
 
 	public PanelClientes() {
@@ -40,10 +39,8 @@ public class PanelClientes extends JPanel implements ActionListener, ListSelecti
 		listaclientes = new JList<String>();
 		model = new DefaultListModel<String>();
 		JScrollPane desplazamientolista = new JScrollPane(listaclientes);
-		va = new VentanaAgregar();
 		vm = new VentanaModificar();
 		desplazamientolista.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-		model.addElement("BRYAN TORRES");
 		listaclientes.setModel(model);
 		listaclientes.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
@@ -58,58 +55,9 @@ public class PanelClientes extends JPanel implements ActionListener, ListSelecti
 		pBotones.add(modificar).setFont(new Font("Comic Sans MS", Font.BOLD, 15));
 		eliminar = new JButton("ELIMINAR CLIENTE");
 		pBotones.add(eliminar).setFont(new Font("Comic Sans MS", Font.BOLD, 15));
-		add(pBotones).setBackground(Color.white);;
 		add(pBotones).setBackground(Color.white);
-		actionListener(this);
+		add(pBotones).setBackground(Color.white);
 
-	}
-
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		if (e.getActionCommand().equals("AGREGAR CLIENTE")) {
-			va.setVisible(true);
-
-		} else if (e.getActionCommand().equals("MODIFICAR CLIENTE")) {
-			for (int i = 0; i < banco.getClientes().size(); i++) {
-				if (banco.getClientes().get(i).getCedula()== listaclientes.getSelectedValue().toString()) {
-					Cliente selected = banco.getClientes().get(i);
-					vm.getNombre_().setText(selected.getNombre());
-					vm.getCedula_().setText(selected.getCedula());
-					vm.getEdad_().setText(Integer.toString(selected.getEdad()));
-					vm.getGenero_().setText(Integer.toString(selected.getGenero()));
-				}
-
-			}
-			vm.setVisible(true);
-
-		
-		} else if(e.getActionCommand().equals("Eliminar Estudiante")){
-			int option = JOptionPane.showConfirmDialog(null, "Esta seguro que desea eliminar al estudiante seleccionado?", "CONFIRMACION", JOptionPane.OK_CANCEL_OPTION);
-			if (option == JOptionPane.OK_OPTION) {
-				if (listaclientes.getSelectedValue() != null) {
-					String[] parts = listaclientes.getSelectedValue().toString().split(" - ");
-					for (int i = 0; i< banco.getClientes().size(); i++){
-						if (banco.getClientes().get(i).getCedula().equals(listaclientes.getSelectedValue())){
-							listaclientes.setSelectedIndex(0);
-							banco.getClientes().remove(i);
-							model.remove(i);
-						}
-					}
-				} else {
-					JOptionPane.showMessageDialog(null, "Por favor seleccione un estudiante", "E R R O R", JOptionPane.ERROR_MESSAGE);
-				}
-			}
-		}
-	}
-
-	public void actualizarList(String nombre) {
-		model.addElement(nombre);
-	}
-
-	private void actionListener(PanelClientes escuchador) {
-		this.getAgregar().addActionListener(escuchador);
-		this.getModificar().addActionListener(escuchador);
-		this.getEliminar().addActionListener(escuchador);
 	}
 
 	public JButton getAgregar() {
@@ -168,14 +116,6 @@ public class PanelClientes extends JPanel implements ActionListener, ListSelecti
 		this.vm = vm;
 	}
 
-	public Banco getBanco() {
-		return banco;
-	}
-
-	public void setBanco(Banco banco) {
-		this.banco = banco;
-	}
-
 	public DefaultListModel<String> getModel() {
 		return model;
 	}
@@ -184,9 +124,4 @@ public class PanelClientes extends JPanel implements ActionListener, ListSelecti
 		this.model = model;
 	}
 
-	@Override
-	public void valueChanged(ListSelectionEvent arg0) {
-		// TODO Auto-generated method stub
-		
-	}
 }
