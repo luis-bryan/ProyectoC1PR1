@@ -21,7 +21,7 @@ public class VentanaPrincipal extends JFrame implements ActionListener{
 	ControlAgregar ca;
 
 	public VentanaPrincipal() {
-		setTitle("BANCO TOBEPE " + "? DONDE TU DINERO ESTA SEGURO !");
+		setTitle("BANCO TOBEPE " + "¡ DONDE TU DINERO ESTA SEGURO !");
 		setResizable(false);
 		setLayout(null);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);

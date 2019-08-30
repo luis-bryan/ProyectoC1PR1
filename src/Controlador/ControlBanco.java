@@ -15,8 +15,7 @@ import javax.swing.JOptionPane;
 
 import Modelo.*;
 
-public class ControlBanco 
-{
+public class ControlBanco {
 	VentanaPrincipal vp;
 	Banco banco;
 	Antecedente antecedente;
@@ -41,15 +40,10 @@ public class ControlBanco
 		if(archivo.exists())
 		{
 			System.out.println("El archivo existe");
-		}
-		else
-		{
-			try
-			{
+		} else {
+			try {
 				archivo.createNewFile();
-			}
-			catch(IOException e)
-			{
+			} catch (IOException e) {
 				e.printStackTrace();
 			}
 		}
@@ -86,9 +80,7 @@ public class ControlBanco
 				}
 			}
 
-		}
-		catch(Exception e)
-		{
+		} catch (Exception e) {
 			JOptionPane.showInputDialog("El usuario no ha sido encontrado");
 		}
 		return c;
@@ -128,9 +120,7 @@ public class ControlBanco
 					}
 				}
 			}
-		}
-		catch(Exception e)
-		{
+		} catch (Exception e) {
 			JOptionPane.showInputDialog("El antecedente no ha sido encontrado");
 		}
 		return a;
@@ -160,17 +150,13 @@ public class ControlBanco
 	public void agregarCliente(String pNombre, String pCedula, int pEdad, char pGenero)
 	{
 		Cliente c = buscarCliente(pCedula);
-		try
-		{
-			if(c==null)
-			{
+		try {
+			if (c == null) {
 				c = new Cliente(pNombre, pCedula, pEdad, pGenero);
 				banco.getClientes().add(c);
 				escribirArchivoCliente();
 			}
-		}
-		catch(Exception e)
-		{
+		} catch (Exception e) {
 			JOptionPane.showInputDialog("El cliente ya existe en el sistema");
 		}
 	}
@@ -203,8 +189,7 @@ public class ControlBanco
 	public void agregarAntecedente(String pCodigo, String pDescripcion, String pTitulo, String pCedula)
 	{
 		Antecedente a = buscarAntecedente(pCodigo, pCedula);
-		if(a==null)
-		{
+		if (a == null) {
 			a = new Antecedente(pCodigo, pDescripcion, pTitulo);
 			buscarCliente(pCedula).getAntecedentes().add(a);
 			escribirArchivoCliente();
@@ -228,8 +213,7 @@ public class ControlBanco
 	public void eliminarCliente(String pCedula)
 	{
 		Cliente c = buscarCliente(pCedula);
-		if(c!=null)
-		{
+		if (c != null) {
 			banco.getClientes().remove(c);
 			escribirArchivoCliente();
 		}
@@ -255,8 +239,7 @@ public class ControlBanco
 	public void eliminarAntecedente(String pCodigo, String pCedula)
 	{
 		Antecedente a = buscarAntecedente(pCodigo, pCedula);
-		if(a!=null)
-		{
+		if (a != null) {
 			buscarCliente(pCedula).getAntecedentes().remove(a);
 			escribirArchivoCliente();
 		}
@@ -283,9 +266,7 @@ public class ControlBanco
 	public void modificarCliente(String pCedula, String pNombre, int pEdad, char pGenero)
 	{
 		Cliente c = buscarCliente(pCedula);
-		System.out.println(pCedula);
-		System.out.println(c);
-		if(c!=null){
+		if (c != null) {
 			c.setNombre(pNombre);
 			c.setEdad(pEdad);
 			c.setGenero(pGenero);
@@ -309,16 +290,13 @@ public class ControlBanco
 	{
 		FileWriter escritura;
 		PrintWriter pw;
-		try
-		{
+		try {
 			escritura = new FileWriter(archivo);
 			pw = new PrintWriter(escritura);
 			pw.println(banco.toString());
 			pw.close();
 			escritura.close();
-		}
-		catch(IOException e)
-		{
+		} catch (IOException e) {
 			JOptionPane.showMessageDialog(null, "No se pudo agregar el cliente al archivo");
 		}
 	}
@@ -340,8 +318,7 @@ public class ControlBanco
 		String cadena=null;
 		FileReader lectura;
 		BufferedReader lec;
-		try
-		{
+		try {
 			lectura = new FileReader(archivo);
 			lec = new BufferedReader(lectura);
 			String nombre = "";
@@ -352,6 +329,7 @@ public class ControlBanco
 			String titulo = "";
 			String descripcion = "";
 			ArrayList<Antecedente> listaNuevosAntecedentes = new ArrayList<Antecedente>();
+
 			while((cadena=lec.readLine())!=null) 
 			{
 				String[] separado= cadena.split("=");
